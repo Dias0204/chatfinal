@@ -53,6 +53,14 @@ public class AuthService {
         return null;
     }
 
+    public User checkLogin(String token) {
+        Auth auth = authRepository.getByToken(token);
+        if (auth != null){
+            return userRepository.getUserById(auth.getUserId());
+        }
+        return null;
+    }
+
     public Boolean isExistByToken(String token) {
         return authRepository.existsByToken(token);
     }

@@ -9,5 +9,7 @@ public interface AuthRepository extends JpaRepository<Auth, Long> {
 
     Auth getByLoginAndPassword(String login, String password);
     Boolean existsByToken(String token);
+    Auth getByToken(String token);
+
 
 }

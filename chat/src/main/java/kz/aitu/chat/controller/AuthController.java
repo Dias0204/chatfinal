@@ -31,16 +31,22 @@ public class AuthController {
         return ResponseEntity.ok(auth);
     }
 
-    @PostMapping("/register")
+    @PostMapping("/authRegister")
     public ResponseEntity<?> register(@RequestHeader("name") String name, @RequestHeader("login") String login, @RequestHeader("password") String password) {
         User user = authService.register(name,login,password);
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/authLogin")
     public ResponseEntity<?> login(@RequestHeader("login") String login, @RequestHeader("password") String password) {
         String token = authService.login(login,password);
         return ResponseEntity.ok(token);
+    }
+
+    @PostMapping("/authCheckLogin")
+    public ResponseEntity<?> checkLogin(@RequestHeader("token") String token) {
+        User user = authService.checkLogin(token);
+        return ResponseEntity.ok(user);
     }
 
 }
